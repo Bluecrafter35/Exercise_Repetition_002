@@ -48,6 +48,7 @@ public class WetterWerteGUI extends javax.swing.JFrame
         jmDatei = new javax.swing.JMenu();
         jmiSpeichern = new javax.swing.JMenuItem();
         jmiLaden = new javax.swing.JMenuItem();
+        jmiExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -122,6 +123,16 @@ public class WetterWerteGUI extends javax.swing.JFrame
             }
         });
         jmDatei.add(jmiLaden);
+
+        jmiExit.setText("Exit");
+        jmiExit.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                onExit(evt);
+            }
+        });
+        jmDatei.add(jmiExit);
 
         jMenuBar1.add(jmDatei);
         jMenuBar1.add(jMenu2);
@@ -238,6 +249,11 @@ public class WetterWerteGUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_onLaden
 
+    private void onExit(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onExit
+    {//GEN-HEADEREND:event_onExit
+        System.exit(0);
+    }//GEN-LAST:event_onExit
+
     /**
      * @param args the command line arguments
      */
@@ -283,6 +299,7 @@ public class WetterWerteGUI extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> jlListe;
     private javax.swing.JMenu jmDatei;
+    private javax.swing.JMenuItem jmiExit;
     private javax.swing.JMenuItem jmiLaden;
     private javax.swing.JMenuItem jmiSpeichern;
     private javax.swing.JSlider jsLuftfeuchtigkeit;
