@@ -1,6 +1,8 @@
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
@@ -40,6 +42,23 @@ public class WetterBL extends AbstractListModel
         {
             ex.printStackTrace();
         }
+    }
+    
+    public void load(File f)
+    {
+        try(BufferedReader br = new BufferedReader(new FileReader(f)))
+        {
+            String line ="";
+            while((line=br.readLine())!=null)
+            {
+                WetterWert ww = WetterWert.createWert(line);
+                add(ww);
+            }
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+ 
     }
     
     @Override

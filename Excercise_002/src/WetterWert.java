@@ -40,7 +40,13 @@ public class WetterWert
         return luftfeuchtigkeit;
     }
     
-    
+    public static WetterWert createWert(String line)
+    {
+        String[] parts = line.split(",");
+        Date date = new Date();
+        date.setTime(Long.parseLong(parts[0]));
+        return new WetterWert(date, Integer.parseInt(parts[1]), Integer.parseInt(parts[2]));
+    }
     
     public String toString()
     {

@@ -37,8 +37,6 @@ public class WetterWerteGUI extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        jmiSpeichern = new javax.swing.JMenuItem();
         jsTemperatur = new javax.swing.JSlider();
         lbTemperatur = new javax.swing.JLabel();
         jsLuftfeuchtigkeit = new javax.swing.JSlider();
@@ -46,16 +44,11 @@ public class WetterWerteGUI extends javax.swing.JFrame
         btEinfuegen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlListe = new javax.swing.JList<>();
-
-        jmiSpeichern.setText("Speichern");
-        jmiSpeichern.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                onSpeichern(evt);
-            }
-        });
-        jPopupMenu1.add(jmiSpeichern);
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jmDatei = new javax.swing.JMenu();
+        jmiSpeichern = new javax.swing.JMenuItem();
+        jmiLaden = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,8 +99,34 @@ public class WetterWerteGUI extends javax.swing.JFrame
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jlListe.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(jlListe);
+
+        jmDatei.setText("Datei");
+
+        jmiSpeichern.setText("Speichern");
+        jmiSpeichern.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                onSpeichern(evt);
+            }
+        });
+        jmDatei.add(jmiSpeichern);
+
+        jmiLaden.setText("Laden");
+        jmiLaden.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                onLaden(evt);
+            }
+        });
+        jmDatei.add(jmiLaden);
+
+        jMenuBar1.add(jmDatei);
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,13 +146,13 @@ public class WetterWerteGUI extends javax.swing.JFrame
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbTemperatur, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jsTemperatur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbLuftfeuchtigkeit, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,7 +160,7 @@ public class WetterWerteGUI extends javax.swing.JFrame
                         .addComponent(jsLuftfeuchtigkeit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btEinfuegen, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -208,6 +227,17 @@ public class WetterWerteGUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_onSpeichern
 
+    private void onLaden(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onLaden
+    {//GEN-HEADEREND:event_onLaden
+        JFileChooser chooser = new JFileChooser("C:\\Users\\Christoph Mautner\\Desktop\\Schule\\3BHIF\\POS Aufgaben\\Exercise_Repetition_002");
+        int ret = chooser.showOpenDialog(null);
+        if(ret == JFileChooser.APPROVE_OPTION)
+        {
+            File f = chooser.getSelectedFile();
+            wettermod.load(f);
+        }
+    }//GEN-LAST:event_onLaden
+
     /**
      * @param args the command line arguments
      */
@@ -248,9 +278,12 @@ public class WetterWerteGUI extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEinfuegen;
-    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> jlListe;
+    private javax.swing.JMenu jmDatei;
+    private javax.swing.JMenuItem jmiLaden;
     private javax.swing.JMenuItem jmiSpeichern;
     private javax.swing.JSlider jsLuftfeuchtigkeit;
     private javax.swing.JSlider jsTemperatur;
