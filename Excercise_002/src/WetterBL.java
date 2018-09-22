@@ -1,4 +1,7 @@
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 
@@ -20,6 +23,23 @@ public class WetterBL extends AbstractListModel
     {
         wetterliste.add(ww);
         fireIntervalAdded(this, wetterliste.size()-1, wetterliste.size()-1);
+    }
+    
+    public void speichern(File f)
+    {
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(f)))
+        {
+            for (WetterWert ww : wetterliste) 
+            {
+                bw.append(""+ww.getDatum().getTime()+",");
+                bw.append(""+ww.getTemperatur()+",");
+                bw.append(""+ww.getLuftfeuchtigkeit());
+                bw.newLine();
+            }
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
     }
     
     @Override

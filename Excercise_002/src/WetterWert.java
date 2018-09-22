@@ -24,6 +24,23 @@ public class WetterWert
         this.temperatur = temperatur;
         this.luftfeuchtigkeit = luftfeuchtigkeit;
     }
+
+    public Date getDatum()
+    {
+        return datum;
+    }
+
+    public int getTemperatur()
+    {
+        return temperatur;
+    }
+
+    public int getLuftfeuchtigkeit()
+    {
+        return luftfeuchtigkeit;
+    }
+    
+    
     
     public String toString()
     {

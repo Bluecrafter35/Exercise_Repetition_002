@@ -1,5 +1,9 @@
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,6 +37,8 @@ public class WetterWerteGUI extends javax.swing.JFrame
     private void initComponents()
     {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jmiSpeichern = new javax.swing.JMenuItem();
         jsTemperatur = new javax.swing.JSlider();
         lbTemperatur = new javax.swing.JLabel();
         jsLuftfeuchtigkeit = new javax.swing.JSlider();
@@ -40,6 +46,16 @@ public class WetterWerteGUI extends javax.swing.JFrame
         btEinfuegen = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlListe = new javax.swing.JList<>();
+
+        jmiSpeichern.setText("Speichern");
+        jmiSpeichern.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                onSpeichern(evt);
+            }
+        });
+        jPopupMenu1.add(jmiSpeichern);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +106,7 @@ public class WetterWerteGUI extends javax.swing.JFrame
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jlListe.setComponentPopupMenu(jPopupMenu1);
         jScrollPane1.setViewportView(jlListe);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,6 +183,31 @@ public class WetterWerteGUI extends javax.swing.JFrame
         }
     }//GEN-LAST:event_onLuftChange
 
+    private void onSpeichern(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onSpeichern
+    {//GEN-HEADEREND:event_onSpeichern
+        JFileChooser chooser = new JFileChooser("C:\\Users\\Christoph Mautner\\Desktop\\Schule\\3BHIF\\POS Aufgaben\\Exercise_Repetition_002");
+        int ret = chooser.showOpenDialog(null);
+        if(ret == JFileChooser.APPROVE_OPTION)
+        {
+            File f = chooser.getSelectedFile();
+            wettermod.speichern(f);
+            if (!f.toString().substring(f.toString().length() - 4, f.toString().length()).equals(".csv")) {
+               ArrayList<String> array=new ArrayList();
+
+                String [] arrayKlein=f.toString().split("\\.");
+                if(arrayKlein.length==0){
+                 array.add(f.getAbsolutePath());
+                }else{
+                    JOptionPane.showMessageDialog(null,"Dein Dateiformat ist nicht verfügbar und wurde daher in einem CSV-File gespeichert.");
+                    array.add(arrayKlein[0]);
+                }
+
+                final File renamed = new File(array.get(0) + ".csv");
+                f = renamed;
+            }
+        }
+    }//GEN-LAST:event_onSpeichern
+
     /**
      * @param args the command line arguments
      */
@@ -206,8 +248,10 @@ public class WetterWerteGUI extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEinfuegen;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> jlListe;
+    private javax.swing.JMenuItem jmiSpeichern;
     private javax.swing.JSlider jsLuftfeuchtigkeit;
     private javax.swing.JSlider jsTemperatur;
     private javax.swing.JLabel lbLuftfeuchtigkeit;
