@@ -13,13 +13,14 @@ import java.util.Date;
  */
 public class WetterWerteGUI extends javax.swing.JFrame
 {
-
+    WetterBL wettermod = new WetterBL();
     /**
      * Creates new form WetterWerteGUI
      */
     public WetterWerteGUI()
     {
         initComponents();
+        this.jlListe.setModel(wettermod);
     }
 
     /**
@@ -120,6 +121,7 @@ public class WetterWerteGUI extends javax.swing.JFrame
         try{
             Date datum = new Date();
             WetterWert ww = new WetterWert(datum, this.jsTemperatur.getValue(), this.jsLuftfeuchtigkeit.getValue());
+            wettermod.add(ww);
         }catch(Exception ex)
         {
             ex.printStackTrace();

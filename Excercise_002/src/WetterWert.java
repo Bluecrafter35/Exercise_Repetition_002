@@ -27,6 +27,7 @@ public class WetterWert
     
     public String toString()
     {
-        return String.format("%s", datum );
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM - HH:mm:ss");
+        return String.format("%s - %d° - %d%s", sdf.format(datum), temperatur, luftfeuchtigkeit, "%" );
     }
 }
