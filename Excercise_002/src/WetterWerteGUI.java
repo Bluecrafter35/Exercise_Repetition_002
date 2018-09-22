@@ -1,3 +1,6 @@
+
+import java.util.Date;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -58,6 +61,13 @@ public class WetterWerteGUI extends javax.swing.JFrame
         lbLuftfeuchtigkeit.setText("Luftfeuchtigkeit");
 
         btEinfuegen.setText("Hinzufügen");
+        btEinfuegen.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                onEinfuegen(evt);
+            }
+        });
 
         jlListe.setModel(new javax.swing.AbstractListModel<String>()
         {
@@ -104,6 +114,17 @@ public class WetterWerteGUI extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void onEinfuegen(java.awt.event.ActionEvent evt)//GEN-FIRST:event_onEinfuegen
+    {//GEN-HEADEREND:event_onEinfuegen
+        try{
+            Date datum = new Date();
+            WetterWert ww = new WetterWert(datum, this.jsTemperatur.getValue(), this.jsLuftfeuchtigkeit.getValue());
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_onEinfuegen
 
     /**
      * @param args the command line arguments
