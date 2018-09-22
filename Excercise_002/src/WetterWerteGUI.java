@@ -51,6 +51,13 @@ public class WetterWerteGUI extends javax.swing.JFrame
         jsTemperatur.setPaintTicks(true);
         jsTemperatur.setToolTipText("");
         jsTemperatur.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jsTemperatur.addChangeListener(new javax.swing.event.ChangeListener()
+        {
+            public void stateChanged(javax.swing.event.ChangeEvent evt)
+            {
+                onTempChange(evt);
+            }
+        });
 
         lbTemperatur.setText("Temperatur");
 
@@ -58,6 +65,13 @@ public class WetterWerteGUI extends javax.swing.JFrame
         jsLuftfeuchtigkeit.setMinorTickSpacing(10);
         jsLuftfeuchtigkeit.setPaintLabels(true);
         jsLuftfeuchtigkeit.setPaintTicks(true);
+        jsLuftfeuchtigkeit.addChangeListener(new javax.swing.event.ChangeListener()
+        {
+            public void stateChanged(javax.swing.event.ChangeEvent evt)
+            {
+                onLuftChange(evt);
+            }
+        });
 
         lbLuftfeuchtigkeit.setText("Luftfeuchtigkeit");
 
@@ -127,6 +141,30 @@ public class WetterWerteGUI extends javax.swing.JFrame
             ex.printStackTrace();
         }
     }//GEN-LAST:event_onEinfuegen
+
+    private void onTempChange(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onTempChange
+    {//GEN-HEADEREND:event_onTempChange
+        try{
+            String text = "Temperatur: ";
+            text+=this.jsTemperatur.getValue()+"°";
+            this.lbTemperatur.setText(text);
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_onTempChange
+
+    private void onLuftChange(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onLuftChange
+    {//GEN-HEADEREND:event_onLuftChange
+        try{
+            String text = "Luftfeuchtigkeit: ";
+            text+=this.jsLuftfeuchtigkeit.getValue()+"%";
+            this.lbLuftfeuchtigkeit.setText(text);
+        }catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_onLuftChange
 
     /**
      * @param args the command line arguments
